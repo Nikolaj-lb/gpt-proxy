@@ -15,8 +15,8 @@ async def chat(request: Request):
         return JSONResponse(content={"error": "Missing 'messages'"}, status_code=400)
 
     try:
-        # Новый способ обращения к API
-        response = openai.completions.create(
+        # Правильный способ обращения к OpenAI Chat API
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages
         )
