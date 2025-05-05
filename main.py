@@ -20,7 +20,7 @@ class ChatRequest(BaseModel):
 async def chat(request: ChatRequest):
     # Убедитесь, что ключ API правильно задан
     # Задайте свой API-ключ OpenAI
-    openai.api_key = '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'
+    # openai.api_key = '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'
 
     
     # Запрос к OpenAI API
@@ -30,4 +30,4 @@ async def chat(request: ChatRequest):
     )
     
     # Отправляем ответ от модели
-    return {"response": response.choices[0].message["content"]}
+    return response
