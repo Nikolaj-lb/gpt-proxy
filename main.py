@@ -15,14 +15,12 @@ async def chat(request: Request):
         return JSONResponse(content={"error": "Missing 'messages'"}, status_code=400)
 
     try:
-        # Новый способ обращения к OpenAI API с корректными параметрами
-        response = openai.Completion.create(
-            model="text-davinci-003",  # Для совместимости с новым API
-            prompt=messages[0]['content'],  # Используем первый message как prompt
-            max_tokens=150
+        # Новый способ работы с Chat API начиная с версии openai>=1.0.0
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Используем модель gpt-3.5-turbo
+            messages=messages  # Передаем все сообщения как список
         )
-        return JSONResponse(content={"response": response['choices'][0]['text']})
+        return JSONResponse(content=response['choices'][0]['message'])
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
-# fix main.py
