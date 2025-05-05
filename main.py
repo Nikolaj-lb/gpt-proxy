@@ -18,7 +18,7 @@ class Message(BaseModel):
     
 # Используем правильную модель запроса
 class ChatRequest(BaseModel):
-    messages: list[Message]
+    messages: list[dict]
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
